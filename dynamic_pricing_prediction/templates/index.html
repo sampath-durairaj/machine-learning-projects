@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pricing Calculation Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111111;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background-color: #aaa3d1;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .prediction {
+            margin-top: 20px;
+            font-size: 25px;
+            color: green;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Prediction - Regression Algorithm</h1>
+        <h2>Pricing Calculation Prediction</h2>
+        <form method="POST" action ="/predict">
+            <label for="corridor">Corridor</label>
+            <input type="number" name="corridor" required value="{{ corridor }}">
+
+            <label for="speed">Speed</label>
+            <input type="number" name="speed" required value="{{ speed }}">
+
+            <label for="VOLUME">Volume</label>
+            <input type="number" name="volume" required value="{{ volume }}">
+
+            <label for="occupancy">Occupancy</label>
+            <input type="number" name="occupancy" required value="{{ occupancy }}">
+
+            <label for="td">Traffic Density</label>
+            <input type="number" name="td" required value="{{ td }}">
+
+            <button type="submit" name="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+            <div class="prediction">
+                Predicted DPA Calculation is: {{ prediction  | round(2)}}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
